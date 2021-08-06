@@ -4,6 +4,9 @@ set -e
 set -x
 
 CLONE_DIR=$(mktemp -d)
+export GITHUB_TOKEN=$API_TOKEN_GITHUB
+git config --global user.email "dlavrushko"
+git config --global user.name "denis.lavrushko@iits-consulting.com"
 
 echo "Cloning destination git repository"
 git clone "https://$API_TOKEN_GITHUB@github.com/$INPUT_DESTINATION_REPO.git" "$CLONE_DIR"
