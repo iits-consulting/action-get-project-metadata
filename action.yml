@@ -17,6 +17,8 @@ outputs:
     description: 'Set of information about project'
   labels:
     description: 'List of labels from the project'
+  pull-requests:
+    description: 'List of pull-requests'
 branding:
   icon: 'git-commit'
   color: 'green'

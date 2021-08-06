@@ -22,4 +22,7 @@ if [[ "$INPUT_TYPE" == "summary" ]]; then
 elif [[ "$INPUT_TYPE" == "labels" ]]; then
     gh api repos/:owner/:repo/labels -t '{{range  .}}{{.name}}{{"\n"}}{{end}}' > /tmp/labels.json
     echo "::set-output name=labels::$(cat labels.json)"
+elif [[ "$INPUT_TYPE" == "pull-requests" ]]; then
+    gh api repos/:owner/:repo/pulls > /tmp/pulls.json
+    echo "::set-output name=pull-requests::$(cat pulls.json)"
 fi

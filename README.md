@@ -1,8 +1,10 @@
 # Action get metadata from any repository 
 This GitHub Action grabs project metadata
+Data provided as JSON object
+
 
 ## Example Workflow
-    name: Push File
+    name: Search in project
 
     on: push
 
@@ -13,7 +15,7 @@ This GitHub Action grabs project metadata
         - name: Checkout
           uses: actions/checkout@v2
 
-        - name: Create pull request
+        - name: Get labels from project
           uses: iits-consulting/action-get-project-metadata@main
           env:
             API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
@@ -21,9 +23,17 @@ This GitHub Action grabs project metadata
             destination_repo: 'user-name/repository-name'
             type: 'labels'
 
+        - name: Search for chartName label
+          run: |
+            CHART_NAME=$(echo ${{ steps.labels.outputs }} | jq -r -c 'map(select(.name | contains("chartName")) | .name)')
+            if [[ -z $CHART_NAME ]]; then
+              echo "ERROR: There is no label 'chartName'"
+              exit 1
+            fi
+
 ## Variables
 * destination_repo: The repository to place the file or directory in.
-* labels: summary/labels
+* labels: summary/labels/pull-requests
 
 
 ## ENV
