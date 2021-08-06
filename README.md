@@ -1,4 +1,4 @@
-# Action pull request another repository 
+# Action get metadata from any repository 
 This GitHub Action grabs project metadata
 
 ## Example Workflow
