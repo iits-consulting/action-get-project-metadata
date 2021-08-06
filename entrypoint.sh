@@ -19,7 +19,7 @@ fi
 if [[ "$INPUT_TYPE" == "summary" ]]; then
     gh api repos/:owner/:repo > summary.json
     echo "::set-output name=summary::$(cat summary.json)"
-elif [[ "$INPUT_TYPE" == "labels" ]]
+elif [[ "$INPUT_TYPE" == "labels" ]]; then
     gh api repos/:owner/:repo/labels -t '{{range  .}}{{.name}}{{"\n"}}{{end}}' > /tmp/labels.json
     echo "::set-output name=labels::$(cat labels.json)"
 fi
