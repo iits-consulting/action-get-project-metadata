@@ -1,0 +1,22 @@
+name: 'Get repository meta information'
+description: 'Used for metadata from repository repository'
+inputs:
+  destination_repo:
+    description: 'Destination repository'
+    required: true
+  type:
+    description: 'Select ont of the types: summary, labels'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.destination-repo }}
+outputs:
+  repo_summary:
+    description: 'Set of information about project'
+  labels:
+    description: 'List of labels from the project'
+branding:
+  icon: 'git-commit'
+  color: 'green'
